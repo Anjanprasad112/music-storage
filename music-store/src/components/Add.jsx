@@ -3,23 +3,22 @@ import axios from 'axios';
 // useState
 
 const Add = () => {
-  const [formData, setFormData] = useState({
-    title: '',
-    lyrics: '',
-  });
+  const [title, setTitle] = useState('');
+  const [lyrics, setLyrics] = useState('');
 
-  const handleSubmit = async () => {
+  const handleCreate = async () => {
     try {
-      const response = await axios.post('localhost:3000/items', { formData });
-      // onItemCreated(response.data);
+      const response = await axios.post('http://localhost:5000/music', { 
+        title : String(title),
+        lyrics : String(lyrics)
+       });  
+      setTitle('');
+      setLyrics('');
       console.log(response.data);
-      setFormData('');
-      // setDescription('');
     } catch (error) {
       console.error('Error creating item:', error);
     }
   };
-
   return (
     <div className="font-mono">
     <h2 className="text-3xl font-bold text-center m-2">CREATE</h2>
@@ -33,9 +32,9 @@ const Add = () => {
           </p>
           <input
             type="text"
-            value={formData.title}
+            value={title}
             id='title'
-            onChange={(event) => setFormData({ ...formData, title: event.target.value })}
+            onChange={(event) => setTitle( event.target.value )}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
@@ -45,7 +44,9 @@ const Add = () => {
             Lyrics :
           </p>
 
-          <textarea name="textarea" rows="10" cols="40" value={formData.lyrics} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => setFormData({...formData,lyrics:e.target.value})}></textarea>
+          <textarea name="textarea" rows="10" cols="40" value={lyrics} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => setLyrics(e.target.value)} />
+
+          {/* </textarea> */}
          
         </div>
 
@@ -53,7 +54,7 @@ const Add = () => {
           <button
             type="submit"
             className="mx-auto bg-neutral-700 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            onClick={handleSubmit}
+            onClick={handleCreate}
           >
             Create
           </button>

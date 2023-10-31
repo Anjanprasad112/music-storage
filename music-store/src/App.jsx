@@ -24,7 +24,7 @@ function App() {
       {/* <Route exact path='/list' element={<List/>}/> */}
       <Route exact path="*" element={<Error />} />
       <Route exact path="/list" element={<UserList/>} />
-      <Route path="/user/:userId" element={<UserDetails/>} />
+      <Route path="/list/:id" element={<UserDetails/>} />
      </Routes>
      </BrowserRouter>
     </>
