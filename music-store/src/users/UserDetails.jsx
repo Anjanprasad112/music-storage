@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const UserDetails = () => {
   const { userId } = useParams();
   const [user, setUser] = useState(null);
-
+  const navigate = useNavigate();
+  const back=()=>{
+    navigate("/list");
+  }
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -47,13 +51,19 @@ const UserDetails = () => {
     </div>
     <div className="flex  justify-center">
           <button
-            type="submit"
+            type="button"
             className="mx-auto bg-neutral-700 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Delete
           </button>
           <button
-            type="submit"
+            type="button"
+            className="mx-auto bg-neutral-700 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          onClick={back}>
+            Back
+          </button>
+          <button
+            type="button"
             className="mx-auto bg-neutral-700 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Edit
