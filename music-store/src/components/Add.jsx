@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
 // useState
 
 const Add = () => {
@@ -7,17 +8,23 @@ const Add = () => {
     lyrics: '',
   });
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log(formData);
-  }
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post('localhost:3000/items', { formData });
+      // onItemCreated(response.data);
+      console.log(response.data);
+      setFormData('');
+      // setDescription('');
+    } catch (error) {
+      console.error('Error creating item:', error);
+    }
+  };
 
   return (
     <div className="font-mono">
     <h2 className="text-3xl font-bold text-center m-2">CREATE</h2>
     <div className="w-full max-w-md h-full mx-auto m-2">
-      <form
-        onSubmit={handleSubmit}
+      <div
         className="bg-stone-100 shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
         <div className="mb-4">
@@ -46,11 +53,12 @@ const Add = () => {
           <button
             type="submit"
             className="mx-auto bg-neutral-700 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            onClick={handleSubmit}
           >
             Create
           </button>
         </div>
-      </form>
+      </div>
     </div>
   </div>
   )
