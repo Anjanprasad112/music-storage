@@ -10,6 +10,7 @@ const UserDetails = () => {
   const back=()=>{
     navigate("/list");
   }
+  
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -23,11 +24,21 @@ const UserDetails = () => {
 
     fetchUser();
   }, [id]);
-  console.log(user);
 
   if (!user) {
     return <div>Loading user details...</div>;
   }
+  // const {_id,title,lyrics} = props.music;
+  const deleteHandler=async() => {
+    await axios.delete(`http://localhost:5000/music/${id}`);
+    // console.log('deleted');
+    navigate('/list');
+ }
+
+ const updateHandler=async() => {
+  // await axios
+  console.log('update handler');
+ }
 
   return (
     <div className="container mx-auto mt-10">
@@ -42,7 +53,7 @@ const UserDetails = () => {
     <div className="flex  justify-center mt-4">
           <button
             type="button"
-            className="mx-auto bg-neutral-700 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="mx-auto bg-neutral-700 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={deleteHandler}
           >
             Delete
           </button>
@@ -54,7 +65,7 @@ const UserDetails = () => {
           </button>
           <button
             type="button"
-            className="mx-auto bg-neutral-700 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="mx-auto bg-neutral-700 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={updateHandler}
           >
             Edit
           </button>
