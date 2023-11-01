@@ -44,7 +44,7 @@ const Add = () => {
             Lyrics :
           </p>
 
-          <textarea name="textarea" rows="10" cols="40" value={lyrics} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => setLyrics(e.target.value)} />
+          <textarea  name="textarea" rows="10" cols="40" value={lyrics} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => setLyrics(e.target.value)} />
 
           {/* </textarea> */}
          
