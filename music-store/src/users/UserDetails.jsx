@@ -17,7 +17,7 @@ const UserDetails = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/music/${id}`);
+        const response = await axios.get(`https://music-server-kappa.vercel.app/${id}`);
         setUser(response.data.music);
         setTitle(response.data.music.title);
         setLyrics(response.data.music.lyrics);
