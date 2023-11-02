@@ -8,7 +8,7 @@ const Add = () => {
 
   const handleCreate = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/music', { 
+      const response = await axios.post('https://music-server-kappa.vercel.app/music', { 
         title : String(title),
         lyrics : String(lyrics)
        });  

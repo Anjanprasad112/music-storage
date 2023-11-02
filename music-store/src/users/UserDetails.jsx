@@ -34,13 +34,13 @@ const UserDetails = () => {
   }
   // const {_id,title,lyrics} = props.music;
   const deleteHandler=async() => {
-    await axios.delete(`http://localhost:5000/music/${id}`);
+    await axios.delete(`https://music-server-kappa.vercel.app/${id}`);
     // console.log('deleted');
     navigate('/list');
  }
 
  const updateHandler=async() => {
-  await axios.put(`http://localhost:5000/music/${id}`,{title : String(title),
+  await axios.put(`https://music-server-kappa.vercel.app/${id}`,{title : String(title),
   lyrics : String(lyrics)});
   navigate('/list');
  }
