@@ -5,9 +5,16 @@ const router = require('./routes/music-routes');
 const cors = require('cors');
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+    {
+        origin: [""],
+        methods: ["POST","GET"],
+        credentials: true
 
-app.use('/music',router);
+    }
+));
+
+app.use('/',router);
 mongoose.connect("mongodb+srv://anjanprasad112:a0zDJ7ESYOmxDXmM@cluster0.k0ddy8s.mongodb.net/?retryWrites=true&w=majority").then(() => {
     console.log("Connected to database!");
 }).then(() => {
