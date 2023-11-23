@@ -17,7 +17,7 @@ const UserDetails = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(`https://music-server-kappa.vercel.app/${id}`);
+        const response = await axios.get(`http://localhost:5000/music/${id}`);
         setUser(response.data.music);
         setTitle(response.data.music.title);
         setLyrics(response.data.music.lyrics);
@@ -34,13 +34,13 @@ const UserDetails = () => {
   }
   // const {_id,title,lyrics} = props.music;
   const deleteHandler=async() => {
-    await axios.delete(`https://music-server-kappa.vercel.app/${id}`);
+    await axios.delete(`https://music-server-kappa.vercel.app/music/${id}`);
     // console.log('deleted');
     navigate('/list');
  }
 
  const updateHandler=async() => {
-  await axios.put(`https://music-server-kappa.vercel.app/${id}`,{title : String(title),
+  await axios.put(`https://music-server-kappa.vercel.app/music/${id}`,{title : String(title),
   lyrics : String(lyrics)});
   navigate('/list');
  }
